@@ -205,7 +205,7 @@ const login = async (req, res, next) => {
     );
 
     return res.status(200).json({
-      message: "Successfully logged in",
+      // message: "Successfully logged in",
       user: {
         id: existingUser._id,
         name: existingUser.name,
@@ -217,7 +217,7 @@ const login = async (req, res, next) => {
     });
   } catch (err) {
     console.log("Error during login: ", err);
-    return res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json();
   }
 };
 
