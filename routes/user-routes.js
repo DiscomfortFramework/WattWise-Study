@@ -489,7 +489,6 @@ const {
   deleteNotification,
   getDeviceDailyBreakdown,
   getDeviceHourlyBreakdown,
-  testPushNotification,
   markAllNotificationsAsRead,
   addDevice,
   testPushNotification
