@@ -2575,7 +2575,64 @@ const addDevice = async (req, res, next) => {
 // };
 
 
+// Delete a device from user's devices
+const deleteDevice = async (req, res, next) => {
+  const userId = req.id;
+  const { deviceId } = req.params; // This will be the MongoDB _id of the device
 
+  try {
+    console.log('🗑️ Deleting device:', deviceId);
+    console.log('👤 User ID:', userId);
+
+    // Find user
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ 
+        success: false,
+        message: "User not found" 
+      });
+    }
+
+    // Find the device to delete
+    const deviceToDelete = user.devices.id(deviceId);
+    if (!deviceToDelete) {
+      return res.status(404).json({ 
+        success: false,
+        message: "Device not found" 
+      });
+    }
+
+    const deviceName = deviceToDelete.name;
+
+    // Remove the device using pull
+    user.devices.pull(deviceId);
+    
+    // Save user
+    await user.save();
+
+    console.log(`✅ Device "${deviceName}" deleted successfully`);
+
+    return res.status(200).json({
+      success: true,
+      message: `${deviceName} deleted successfully`,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        devices: user.devices,
+        rooms: user.rooms
+      }
+    });
+
+  } catch (err) {
+    console.error("❌ Error deleting device:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: err.message
+    });
+  }
+};
 
 
 module.exports = {
@@ -2609,5 +2666,6 @@ module.exports = {
   getDeviceHourlyBreakdown,
   testPushNotification,
   markAllNotificationsAsRead,
-  addDevice
+  addDevice,
+  deleteDevice
 };

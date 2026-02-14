@@ -491,7 +491,8 @@ const {
   getDeviceHourlyBreakdown,
   markAllNotificationsAsRead,
   addDevice,
-  testPushNotification
+  testPushNotification,
+  deleteDevice
 
 } = require('../controllers/user-controller');
 
@@ -684,5 +685,7 @@ router.get('/test-schema', verifyToken, async (req, res) => {
 });
 
 router.post('/user/device/add', verifyToken, addDevice);
+// Delete a device from user's profile
+router.delete('/user/device/:deviceId', verifyToken, deleteDevice);
 
 module.exports = router;
