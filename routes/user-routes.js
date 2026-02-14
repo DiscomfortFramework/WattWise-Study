@@ -491,13 +491,14 @@ const {
   getDeviceHourlyBreakdown,
   testPushNotification,
   markAllNotificationsAsRead,
-  addDevice
+  addDevice,
+  testPushNotification
 
 } = require('../controllers/user-controller');
 
 const router = express.Router();
 
-// router.get("/user/test-push", verifyToken, testPushNotification);
+router.get("/user/test-push", verifyToken, testPushNotification);
 
 router.get(
   "/user/device/:applianceKey/hourly-breakdown",
