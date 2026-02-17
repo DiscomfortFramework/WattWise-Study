@@ -4,14 +4,14 @@ const APPLIANCE_SCENARIOS = {
       level: '🟥',
       priority: 'critical',
       scenario: 'High energy per cycle',
-      condition: ({ eaec, N }) => N > 0 && eaec > 4.5,
+      condition: ({ eaec, N }) => N > 0 && eaec > 2.5,
       message: (data) => `⚠️ Your dryer used ${data.eaec.toFixed(2)} kWh this cycle — that's higher than normal. Try using a shorter or eco cycle to save energy. 💚 Health tip: Line-drying clothes in fresh air naturally sanitizes them and is better for sensitive skin!`
     },
     {
       level: '🟧',
       priority: 'warning',
       scenario: 'Daily consumption high',
-      condition: ({ dailyEAEC, N }) => N > 0 && dailyEAEC > 7,
+      condition: ({ dailyEAEC, N }) => N > 0 && dailyEAEC > 4,
       message: (data) => `💡 You've used the dryer ${data.dailyEAEC.toFixed(1)} kWh today. That's quite a bit! Consider air drying some items to save money. 🌿 Fresh air drying reduces static and chemical exposure from dryer sheets.`
     },
     {
@@ -35,14 +35,14 @@ const APPLIANCE_SCENARIOS = {
       level: '🟥',
       priority: 'critical',
       scenario: 'Excessive boil time',
-      condition: ({ eaec, N }) => N > 0 && eaec > 0.18,
+      condition: ({ eaec, N }) => N > 0 && eaec > 0.08,
       message: (data) => `⚠️ Your kettle used ${data.eaec.toFixed(3)} kWh — that's high. Check if it needs descaling or if you're boiling too much water. ☕ Limescale buildup can release minerals into your drinks — regular descaling keeps water purer and healthier.`
     },
     {
       level: '🟧',
       priority: 'warning',
       scenario: 'High daily usage',
-      condition: ({ N }) => N > 8,
+      condition: ({ N }) => N > 4,
       message: (data) => `☕ You've boiled the kettle ${data.N} times today. Consider boiling once and keeping water warm in a thermal flask to save energy. 💧 Staying hydrated is great! Just remember to let boiled water cool slightly before drinking to protect your throat.`
     },
     {
@@ -66,7 +66,7 @@ const APPLIANCE_SCENARIOS = {
       level: '🟥',
       priority: 'critical',
       scenario: 'High power usage per session',
-      condition: ({ eaec, N }) => N > 0 && eaec > 0.5,
+      condition: ({ eaec, N }) => N > 0 && eaec > 0.2,
       message: (data) => `⚠️ Your microwave used ${data.eaec.toFixed(2)} kWh this time — that's quite high. If you're defrosting, try doing it in the fridge overnight instead. 🦠 Slow fridge defrosting is safer as it prevents bacterial growth in the 'danger zone' (4-60°C).`
     },
     {
@@ -90,7 +90,7 @@ const APPLIANCE_SCENARIOS = {
       level: '🟥',
       priority: 'critical',
       scenario: 'High energy per brew',
-      condition: ({ eaec, N }) => N > 0 && eaec > 0.2,
+      condition: ({ eaec, N }) => N > 0 && eaec > 0.12,
       message: (data) => `⚠️ Your coffee machine used ${data.eaec.toFixed(2)} kWh for that brew — that's high. Try making a smaller cup or check if it needs descaling. ☕ Clean machines = cleaner coffee. Mineral buildup can affect flavor and add unwanted particles to your drink.`
     },
     {
@@ -131,7 +131,7 @@ const APPLIANCE_SCENARIOS = {
       level: '🟥',
       priority: 'critical',
       scenario: 'High energy per session',
-      condition: ({ eaec, N }) => N > 0 && eaec > 0.12,
+      condition: ({ eaec, N }) => N > 0 && eaec > 0.012,
       message: (data) => `⚠️ Your toaster used ${data.eaec.toFixed(3)} kWh. Try using a lower heat setting — your toast will still be golden but you'll save energy. 🍞 Lighter toasting creates fewer acrylamides (potentially harmful compounds formed at high heat).`
     },
     {
